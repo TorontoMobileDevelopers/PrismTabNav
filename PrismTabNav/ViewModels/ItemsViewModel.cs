@@ -76,6 +76,10 @@ namespace PrismTabNav.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
+            if (parameters.TryGetValue(CustomNavigationParameters.SubPagePath, out string subPagePath))
+            {
+                _navigationService.NavigateAsync(subPagePath).FireAndForgetSafeAsync();
+            }
             OnLoadItems();
         }
     }
